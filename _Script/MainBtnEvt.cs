@@ -8,7 +8,7 @@ public class MainBtnEvt : MonoBehaviour
 {
 
     AsyncOperation async;
-    public GameObject title_obj, option_obj, book_obj, goOut_obj;
+    public GameObject title_obj, option_obj, book_obj, goOut_obj, ingBox_obj;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +50,16 @@ public class MainBtnEvt : MonoBehaviour
     public void CloseGoOut()
     {
         goOut_obj.SetActive(false);
+    }
+
+    public void OpenBox()
+    {
+        ingBox_obj.SetActive(true);
+    }
+
+    public void CloseBox()
+    {
+        ingBox_obj.SetActive(false);
     }
 
     public void GoOut()
