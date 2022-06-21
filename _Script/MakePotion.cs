@@ -12,6 +12,8 @@ public class MakePotion : MonoBehaviour
     public GameObject ing_obj1, ing_obj2, ing_obj3, ing_obj4;
     public string name_str, num_str;
 
+    public GameObject GM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,10 +64,9 @@ public class MakePotion : MonoBehaviour
         else
         {
         }
-        check = true;
-        if (PlayerPrefs.GetInt("ing" + num_str, 0) != 0)
+        if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
         {
-            //check = true;
+            check = true;
         }
 
     }//EndOfOnMouseDown
@@ -78,12 +79,16 @@ public class MakePotion : MonoBehaviour
 
         if (PlayerPrefs.GetInt("ing" + num_str, 0) != 0)
         {
-            if (wldObjectPos.x > -2.5 && wldObjectPos.x < 2.5)
+            if (wldObjectPos.x > -1 && wldObjectPos.x < 1.1)
             {
-                if (wldObjectPos.y < 3.64 && wldObjectPos.y > -3.97)
+                if (wldObjectPos.y < 0.4 && wldObjectPos.y > -3)
                 {
 
-                    //PlayerPrefs.SetInt("ingn" + num_str, PlayerPrefs.GetInt("ing" + num_str, 0) - 1);
+                    if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
+                    {
+                        PlayerPrefs.SetInt("ingn" + num_str, PlayerPrefs.GetInt("ingn" + num_str, 0) - 1);
+                        GM.GetComponent<PotionEvt>().SetIng();
+                    }
                 }
             }
         }

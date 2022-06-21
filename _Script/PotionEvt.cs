@@ -11,11 +11,16 @@ public class PotionEvt : MonoBehaviour
     public Text day_txt;
     public int pageNum_i;
     public GameObject page1_obj, page2_obj;
-
+    public GameObject GM;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetText();
+    }
+
+    public void SetText()
+    {
     }
     
     //현재 넣어서 줄어든 재료 상태
@@ -34,6 +39,10 @@ public class PotionEvt : MonoBehaviour
         ing2_txt.text = "" + PlayerPrefs.GetInt("ing2", 0);
         ing3_txt.text = "" + PlayerPrefs.GetInt("ing3", 0);
         ing4_txt.text = "" + PlayerPrefs.GetInt("ing4", 0);
+        PlayerPrefs.SetInt("ingn1", PlayerPrefs.GetInt("ing1", 6));
+        PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 6));
+        PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 6));
+        PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 6));
     }
 
     //포션에 넣어서 값을 저장한상태
@@ -43,6 +52,7 @@ public class PotionEvt : MonoBehaviour
         PlayerPrefs.SetInt("ing2", PlayerPrefs.GetInt("ingn2", 0));
         PlayerPrefs.SetInt("ing3", PlayerPrefs.GetInt("ingn3", 0));
         PlayerPrefs.SetInt("ing4", PlayerPrefs.GetInt("ingn4", 0));
+        GM.GetComponent<MainBtnEvt>().CloseBox();
     }
 
     //하루가 지날때

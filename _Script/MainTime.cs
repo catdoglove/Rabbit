@@ -9,20 +9,23 @@ public class MainTime : MonoBehaviour
     public int heart_i;
     public Text talkTime_txt, talkNum;
     string lastTime;
-    
+
+    public GameObject h1_obj, h2_obj, h3_obj;
+    public Sprite h0_spr, h1_spr;
+
     
     // Use this for initialization
     void Start()
     {
         //대화
         StartCoroutine("talkTimeFlow");
+        
 
-        /*
-        if (talk >= 5)
+        if (PlayerPrefs.GetInt("timefirst", 0)==0)
         {
             PlayerPrefs.SetString("TalkLastTime", System.DateTime.Now.ToString());
+            PlayerPrefs.SetInt("timefirst", 1);
         }
-        */
 
     }
 
@@ -35,7 +38,7 @@ public class MainTime : MonoBehaviour
         int a = 0;
         while (a == 0)
         {
-            heart_i = PlayerPrefs.GetInt("hearti", 0);
+            heart_i = PlayerPrefs.GetInt("hearti", 3);
             lastTime = PlayerPrefs.GetString("TalkLastTime", System.DateTime.Now.ToString());
             System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
             System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
@@ -82,10 +85,41 @@ public class MainTime : MonoBehaviour
                 talkTime_txt.text = "00:00";
                 //talkNum.text = heart_i.ToString();
             }
-            PlayerPrefs.SetInt("talk", heart_i);
+            PlayerPrefs.SetInt("hearti", heart_i);
             PlayerPrefs.Save();
+            SetHeart();
 
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    void SetHeart()
+    {
+
+        switch (heart_i)
+        {
+            case 0:
+                h1_obj.GetComponent<Image>().sprite = h0_spr;
+                h2_obj.GetComponent<Image>().sprite = h0_spr;
+                h3_obj.GetComponent<Image>().sprite = h0_spr;
+                break;
+            case 1:
+                h1_obj.GetComponent<Image>().sprite = h1_spr;
+                h2_obj.GetComponent<Image>().sprite = h0_spr;
+                h3_obj.GetComponent<Image>().sprite = h0_spr;
+                break;
+            case 2:
+                h1_obj.GetComponent<Image>().sprite = h1_spr;
+                h2_obj.GetComponent<Image>().sprite = h1_spr;
+                h3_obj.GetComponent<Image>().sprite = h0_spr;
+                break;
+            case 3:
+                h1_obj.GetComponent<Image>().sprite = h1_spr;
+                h2_obj.GetComponent<Image>().sprite = h1_spr;
+                h3_obj.GetComponent<Image>().sprite = h1_spr;
+                break;
+            default:
+                break;
         }
     }
 }
