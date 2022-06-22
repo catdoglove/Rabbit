@@ -12,17 +12,18 @@ public class PotionEvt : MonoBehaviour
     public int pageNum_i;
     public GameObject page1_obj, page2_obj;
     public GameObject GM;
+    public GameObject end1_obj, end2_obj;
+    public Sprite[] potion_spr, potionEnd1_spr, potionEnd2_spr;
+
+    public Text dDay_txt;
     
     // Start is called before the first frame update
     void Start()
     {
-        SetText();
-    }
-
-    public void SetText()
-    {
+        dDay_txt.text = "" + PlayerPrefs.GetInt("dayint", 1);
     }
     
+    //빨초파노
     //현재 넣어서 줄어든 재료 상태
     public void SetIng()
     {
@@ -39,20 +40,27 @@ public class PotionEvt : MonoBehaviour
         ing2_txt.text = "" + PlayerPrefs.GetInt("ing2", 0);
         ing3_txt.text = "" + PlayerPrefs.GetInt("ing3", 0);
         ing4_txt.text = "" + PlayerPrefs.GetInt("ing4", 0);
-        PlayerPrefs.SetInt("ingn1", PlayerPrefs.GetInt("ing1", 6));
-        PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 6));
-        PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 6));
-        PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 6));
+        PlayerPrefs.SetInt("ingn1", PlayerPrefs.GetInt("ing1", 0));
+        PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 0));
+        PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 0));
+        PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 0));
     }
 
     //포션에 넣어서 값을 저장한상태
     public void PutIng()
     {
+        PlayerPrefs.SetInt("useding1", PlayerPrefs.GetInt("ingn1", 0)- PlayerPrefs.GetInt("ing1", 0));
+        PlayerPrefs.SetInt("useding2", PlayerPrefs.GetInt("ingn2", 0) - PlayerPrefs.GetInt("ing2", 0));
+        PlayerPrefs.SetInt("useding3", PlayerPrefs.GetInt("ingn3", 0) - PlayerPrefs.GetInt("ing3", 0));
+        PlayerPrefs.SetInt("useding4", PlayerPrefs.GetInt("ingn4", 0) - PlayerPrefs.GetInt("ing4", 0));
+
+
         PlayerPrefs.SetInt("ing1", PlayerPrefs.GetInt("ingn1", 0));
         PlayerPrefs.SetInt("ing2", PlayerPrefs.GetInt("ingn2", 0));
         PlayerPrefs.SetInt("ing3", PlayerPrefs.GetInt("ingn3", 0));
         PlayerPrefs.SetInt("ing4", PlayerPrefs.GetInt("ingn4", 0));
         GM.GetComponent<MainBtnEvt>().CloseBox();
+        DayEnd();
     }
 
     //하루가 지날때
@@ -60,13 +68,13 @@ public class PotionEvt : MonoBehaviour
     {
         if(PlayerPrefs.GetInt("dayint", 1) == 7)
         {
-
+            Ending();
         }
         else
         {
             PlayerPrefs.SetInt("dayint", PlayerPrefs.GetInt("dayint", 1) + 1);
             DayEnd_obj.SetActive(true);
-            day_txt.text = "" + PlayerPrefs.GetInt("dayint", 1);
+            dDay_txt.text = "" + PlayerPrefs.GetInt("dayint", 1);
         }
     }
 
@@ -77,6 +85,47 @@ public class PotionEvt : MonoBehaviour
 
     public void Ending()
     {
+
+        int c = 0;
+        int b = 0;
+        int num = 1;
+
+        c = PlayerPrefs.GetInt("useding1", 0);
+        b= PlayerPrefs.GetInt("useding2", 0);
+        if (b > c)
+        {
+            c = 0 + b;
+            num = 2;
+        }
+
+        b = PlayerPrefs.GetInt("useding3", 0);
+        if (b > c)
+        {
+            c = 0 + b;
+            num = 3;
+        }
+
+        b = PlayerPrefs.GetInt("useding4", 0);
+        if (b > c)
+        {
+            c = 0 + b;
+            num = 4;
+        }
+
+        if (c > 20)
+        {
+            switch (num)
+            {
+                case 0:
+                    break;
+                case 1:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
         DayEnding_obj.SetActive(true);
     }
 

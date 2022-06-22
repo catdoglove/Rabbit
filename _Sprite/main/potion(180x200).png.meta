@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: -8793171559827341662
     second: potion(180x200)_8
+  - first:
+      213: 3066775777077188121
+    second: potion(180x200)_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -310,6 +313,27 @@ TextureImporter:
       bones: []
       spriteID: 2ae7c67fd0168f580800000000000000
       internalID: -8793171559827341662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: potion(180x200)_9
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 180
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 916557e12506f8a20800000000000000
+      internalID: 3066775777077188121
       vertices: []
       indices: 
       edges: []
