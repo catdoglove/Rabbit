@@ -28,8 +28,11 @@ public class SoundHandler : MonoBehaviour {
         }
         //BGSSlider();
         */
-        BGMSlider();
-        SESlider();
+        if (BGM_sld != null)
+        {
+            BGMSlider();
+            SESlider();
+        }
     }
 
     public void BGMSlider()
@@ -63,7 +66,10 @@ public class SoundHandler : MonoBehaviour {
 
 
         BGMVol_f = PlayerPrefs.GetFloat("bgm", 1f);
-        BGM_sld.value = BGMVol_f;
+        if (BGM_sld != null)
+        {
+            BGM_sld.value = BGMVol_f;
+        }
         BGM.volume = BGM_sld.value;
 
         //BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
@@ -71,7 +77,10 @@ public class SoundHandler : MonoBehaviour {
         //BGS.volume = BGS_sld.value;
 
         SEVol_f = PlayerPrefs.GetFloat("se", 1f);
-        SE_sld.value = SEVol_f;
+        if (SE_sld != null)
+        {
+            SE_sld.value = SEVol_f;
+        }
         SE.volume = SE_sld.value;
     }
 }

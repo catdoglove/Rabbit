@@ -14,12 +14,18 @@ public class PotionEvt : MonoBehaviour
     public GameObject GM;
     public GameObject end1_obj, end2_obj;
     public Sprite[] potion_spr, potionEnd1_spr, potionEnd2_spr;
+    public Text end_txt, end2_txt;
+
+    List<Dictionary<string, object>> data_end; //csv파일
 
     public Text dDay_txt;
+
+    public int end_i;
     
     // Start is called before the first frame update
     void Start()
     {
+        data_end = CSVReader.Read("CSV/ending");
         dDay_txt.text = "" + PlayerPrefs.GetInt("dayint", 1);
     }
     
@@ -49,10 +55,10 @@ public class PotionEvt : MonoBehaviour
     //포션에 넣어서 값을 저장한상태
     public void PutIng()
     {
-        PlayerPrefs.SetInt("useding1", PlayerPrefs.GetInt("ingn1", 0)- PlayerPrefs.GetInt("ing1", 0));
-        PlayerPrefs.SetInt("useding2", PlayerPrefs.GetInt("ingn2", 0) - PlayerPrefs.GetInt("ing2", 0));
-        PlayerPrefs.SetInt("useding3", PlayerPrefs.GetInt("ingn3", 0) - PlayerPrefs.GetInt("ing3", 0));
-        PlayerPrefs.SetInt("useding4", PlayerPrefs.GetInt("ingn4", 0) - PlayerPrefs.GetInt("ing4", 0));
+        PlayerPrefs.SetInt("useding1", PlayerPrefs.GetInt("useding1", 0) + PlayerPrefs.GetInt("ing1", 0) - PlayerPrefs.GetInt("ingn1", 0));
+        PlayerPrefs.SetInt("useding2", PlayerPrefs.GetInt("useding2", 0) + PlayerPrefs.GetInt("ing2", 0) - PlayerPrefs.GetInt("ingn2", 0));
+        PlayerPrefs.SetInt("useding3", PlayerPrefs.GetInt("useding3", 0) + PlayerPrefs.GetInt("ing3", 0) - PlayerPrefs.GetInt("ingn3", 0));
+        PlayerPrefs.SetInt("useding4", PlayerPrefs.GetInt("useding4", 0) + PlayerPrefs.GetInt("ing4", 0) - PlayerPrefs.GetInt("ingn4", 0));
 
 
         PlayerPrefs.SetInt("ing1", PlayerPrefs.GetInt("ingn1", 0));
@@ -85,7 +91,7 @@ public class PotionEvt : MonoBehaviour
 
     public void Ending()
     {
-
+        PlayerPrefs.SetInt("dayint", 1);
         int c = 0;
         int b = 0;
         int num = 1;
@@ -112,14 +118,41 @@ public class PotionEvt : MonoBehaviour
             num = 4;
         }
 
-        if (c > 20)
+        if (c > 10)
         {
             switch (num)
             {
                 case 0:
                     break;
                 case 1:
-
+                    end1_obj.GetComponent<Image>().sprite = potion_spr[1];
+                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[1];
+                    end_i = 1;
+                    end_txt.text = "" + data_end[0]["potion" + 2];
+                    end2_txt.text = "" + data_end[1]["potion" + 2];
+                    PlayerPrefs.SetInt("checkend" + 1, 2);
+                    break;
+                case 2:
+                    end1_obj.GetComponent<Image>().sprite = potion_spr[0];
+                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[0];
+                    end_i = 0;
+                    end_txt.text = "" + data_end[0]["potion" + 1];
+                    end2_txt.text = "" + data_end[1]["potion" + 1];
+                    PlayerPrefs.SetInt("checkend" + 0, 2);
+                    break;
+                case 3:
+                    end1_obj.GetComponent<Image>().sprite = potion_spr[3];
+                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[3];
+                    end_i = 3;
+                    end_txt.text = "" + data_end[0]["potion" + 4];
+                    end2_txt.text = "" + data_end[1]["potion" + 4];
+                    break;
+                case 4:
+                    end1_obj.GetComponent<Image>().sprite = potion_spr[2];
+                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[2];
+                    end_i = 2;
+                    end_txt.text = "" + data_end[0]["potion" + 3];
+                    end2_txt.text = "" + data_end[1]["potion" + 3];
                     break;
                 default:
                     break;
@@ -127,6 +160,9 @@ public class PotionEvt : MonoBehaviour
         }
 
         DayEnding_obj.SetActive(true);
+        StopCoroutine("updateSec");
+        StartCoroutine("updateSec");
+
     }
 
 
@@ -141,6 +177,8 @@ public class PotionEvt : MonoBehaviour
                 pageNum_i++;
                 break;
             case 1:
+                DayEnding_obj.SetActive(false);
+                StopCoroutine("updateSec");
                 break;
             default:
                 break;
@@ -164,5 +202,40 @@ public class PotionEvt : MonoBehaviour
                 break;
         }
 
+    }
+
+
+
+
+    IEnumerator updateSec()
+    {
+        int a = 0;
+        int k = 0;
+        while (a == 0)
+        {
+
+            switch (k)
+            {
+                case 0:
+                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[end_i];
+                    k++;
+                    break;
+                case 1:
+                    end2_obj.GetComponent<Image>().sprite = potionEnd2_spr[end_i];
+                    k++;
+                    break;
+                case 2:
+                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[end_i];
+                    k++;
+                    break;
+                case 3:
+                    end2_obj.GetComponent<Image>().sprite = potionEnd2_spr[end_i];
+                    k = 0;
+                    break;
+                default:
+                    break;
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

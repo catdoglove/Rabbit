@@ -10,12 +10,14 @@ public class MainBtnEvt : MonoBehaviour
     AsyncOperation async;
     public GameObject title_obj, option_obj, book_obj, goOut_obj, ingBox_obj;
     public GameObject[] check_obj;
-    public int check_i=0;
+    public int check_i;
     public GameObject GM;
 
     // Start is called before the first frame update
     void Start()
     {
+        check_i = 0;
+        PlayerPrefs.SetInt("whereisit", 5);
     }
     
 
@@ -79,7 +81,7 @@ public class MainBtnEvt : MonoBehaviour
     //용암
     public void OutCheck2()
     {
-        check_i = 1;
+        check_i = 3;
         CheckOff();
         check_obj[1].SetActive(true);
     }
@@ -93,7 +95,7 @@ public class MainBtnEvt : MonoBehaviour
     //폭포
     public void OutCheck4()
     {
-        check_i = 3;
+        check_i = 1;
         CheckOff();
         check_obj[3].SetActive(true);
     }
@@ -108,7 +110,14 @@ public class MainBtnEvt : MonoBehaviour
 
     public void GoOut()
     {
-        StartCoroutine(LoadSub());
+        PlayerPrefs.SetInt("hearti", 2);
+        if (PlayerPrefs.GetInt("hearti", 3) > 0)
+        {
+            StartCoroutine("LoadSub");
+            PlayerPrefs.SetInt("whereisit", check_i);
+            PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
+            PlayerPrefs.SetInt("done",1);
+        }
     }
 
     IEnumerator LoadSub()

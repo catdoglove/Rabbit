@@ -10,7 +10,7 @@ public class SceneMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        CheckWhereGo();
     }
 
     IEnumerator LoadMain()
@@ -31,12 +31,16 @@ public class SceneMove : MonoBehaviour
         }
     }
 
+    //장소 코드 0:숲, 1:물, 2:동굴, 3:용암
     public void CheckWhereGo()
     {
         switch (PlayerPrefs.GetInt("whereisit", 0))
         {
-            case 0:
+            case 5:
                 StartCoroutine(LoadMain());
+                break;
+            case 0:
+                StartCoroutine(LoadSub());
                 break;
             case 1:
                 StartCoroutine(LoadSub());
@@ -45,6 +49,9 @@ public class SceneMove : MonoBehaviour
                 StartCoroutine(LoadSub());
                 break;
             case 3:
+                StartCoroutine(LoadSub());
+                break;
+            case 4:
                 StartCoroutine(LoadSub());
                 break;
             default:

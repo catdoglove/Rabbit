@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq; //랜덤필
+using UnityEngine.SceneManagement;
 
 public class subTextgame : MonoBehaviour
 {
+    AsyncOperation async;
     List<Dictionary<string, object>> data_talk; //csv파일
     public Text Text_obj; //선언 및 보여질
     string text_str; //실질적 대사출력
@@ -25,7 +27,9 @@ public class subTextgame : MonoBehaviour
         PlayerPrefs.SetInt("getButterfly", 0);
         PlayerPrefs.SetInt("martialCount", 0);
         data_talk = CSVReader.Read("CSV/subtext");
-        areaCode = 0; //장소변경
+
+        areaCode = PlayerPrefs.GetInt("whereisit", 0);
+
         nextNum = 0;
         randomNum();
 
@@ -210,11 +214,44 @@ public class subTextgame : MonoBehaviour
     }
     public void returnHome()
     {
-        Debug.Log("집으로감");
+        //장소 코드 0:숲, 1:물, 2:동굴, 3:용암
+        //빨초파노
+        int c = 0;
+        switch (areaCode)
+        {
+            case 0:
+                c = 2;
+                break;
+            case 1:
+                c = 3;
+                break;
+            case 2:
+                c = 4;
+                break;
+            case 3:
+                c = 1;
+                break;
+            default:
+                break;
+        }
+
+        PlayerPrefs.SetInt("ing" + c, PlayerPrefs.GetInt("ing" + c, 0)+PlayerPrefs.GetInt("martialCount", 0));
+        PlayerPrefs.SetInt("Butterfly" + c, 1);
+        StartCoroutine("LoadMain");
+        PlayerPrefs.SetInt("whereisit", 5);
     }
     public void doubleReward()
     {
         Debug.Log("보상두배");
     }
 
+
+    IEnumerator LoadMain()
+    {
+        async = SceneManager.LoadSceneAsync("Main");
+        while (!async.isDone)
+        {
+            yield return true;
+        }
+    }
 }
