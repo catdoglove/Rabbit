@@ -41,6 +41,7 @@ public class MainBtnEvt : MonoBehaviour
 
     public void OpenBook()
     {
+        GM.GetComponent<BookEvt>().setData();
         book_obj.SetActive(true);
     }
 
@@ -74,15 +75,21 @@ public class MainBtnEvt : MonoBehaviour
     public void OpenBox()
     {
         ingBox_obj.SetActive(true);
-        PlayerPrefs.SetInt("ingn1", PlayerPrefs.GetInt("ing1", 6));
-        PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 6));
-        PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 6));
-        PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 6));
+        PlayerPrefs.SetInt("ingn1", PlayerPrefs.GetInt("ing1", 0));
+        PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 0));
+        PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 0));
+        PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 0));
+        GM.GetComponent<PotionEvt>().SetButter();
         GM.GetComponent<PotionEvt>().SetIng();
+        GM.GetComponent<PotionEvt>().SetButterin();
     }
 
     public void CloseBox()
     {
+        PlayerPrefs.SetInt("ingn1", PlayerPrefs.GetInt("ing1", 0));
+        PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 0));
+        PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 0));
+        PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 0));
         ingBox_obj.SetActive(false);
     }
 
@@ -132,7 +139,6 @@ public class MainBtnEvt : MonoBehaviour
             StartCoroutine("LoadSub");
             PlayerPrefs.SetInt("whereisit", check_i);
             PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
-            PlayerPrefs.SetInt("done",1);
         }
         else
         {

@@ -45,11 +45,36 @@ public class BookEvt : MonoBehaviour
         potion_str[9] = "처음부터 원했던 포션. 각진 몸을 동그랗게 만들어 준다. 하지만 효과는 짧다.";
     }
 
-    void setData()
+    public void setData()
     {
+        int k = 0;
+        if (PlayerPrefs.GetInt("checkhintfirst", 0) == 0)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                end_i = PlayerPrefs.GetInt("checkend" + i, 0);
+                if (end_i == 2)
+                {
+                    k++;
+                }
+            }
+            if (k >= 4)
+            {
+                PlayerPrefs.SetInt("checkhintfirst", 1);
+                for (int i = 0; i < 10; i++)
+                {
+                    end_i = PlayerPrefs.GetInt("checkend" + i, 0);
+                    if (end_i == 0)
+                    {
+                        PlayerPrefs.SetInt("checkend" + i, 1);
+                    }
+                }
+            }
+        }
+
         for (int i = 0; i < 10; i++)
         {
-            end_i = PlayerPrefs.GetInt("checkend"+i, 1);
+            end_i = PlayerPrefs.GetInt("checkend"+i, 0);
             if (end_i == 1)
             {
                 q_obj[i].SetActive(true);

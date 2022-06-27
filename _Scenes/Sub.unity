@@ -1426,8 +1426,8 @@ MonoBehaviour:
   BGM_sld: {fileID: 0}
   SE_sld: {fileID: 0}
   BGS_sld: {fileID: 0}
-  BGM: {fileID: 0}
-  BGS: {fileID: 756375467}
+  BGM: {fileID: 756375467}
+  BGS: {fileID: 0}
   SE: {fileID: 1061431346}
   audio_obj: {fileID: 0}
 --- !u!1 &893533247

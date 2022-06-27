@@ -15,6 +15,7 @@ public class SceneMove : MonoBehaviour
 
     IEnumerator LoadMain()
     {
+        yield return new WaitForSeconds(2f);
         async = SceneManager.LoadSceneAsync("Main");
         while (!async.isDone)
         {
@@ -24,6 +25,7 @@ public class SceneMove : MonoBehaviour
 
     IEnumerator LoadSub()
     {
+        yield return new WaitForSeconds(2f);
         async = SceneManager.LoadSceneAsync("Sub");
         while (!async.isDone)
         {
@@ -55,6 +57,7 @@ public class SceneMove : MonoBehaviour
                 StartCoroutine(LoadSub());
                 break;
             default:
+                StartCoroutine(LoadMain());
                 break;
         }
     }

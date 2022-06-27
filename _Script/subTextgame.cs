@@ -205,6 +205,7 @@ public class subTextgame : MonoBehaviour
 
     void showResultWnd()
     {
+        PlayerPrefs.SetInt("done", 1);
         resultWnd.SetActive(true);
         resultTotal.text = PlayerPrefs.GetInt("martialCount", 0).ToString() ;
         if(PlayerPrefs.GetInt("getButterfly", 0) == 999)
@@ -248,7 +249,7 @@ public class subTextgame : MonoBehaviour
 
     IEnumerator LoadMain()
     {
-        async = SceneManager.LoadSceneAsync("Main");
+        async = SceneManager.LoadSceneAsync("SubLoad");
         while (!async.isDone)
         {
             yield return true;

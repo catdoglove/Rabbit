@@ -21,14 +21,18 @@ public class PotionEvt : MonoBehaviour
 
     public Color color;
 
-    public GameObject[] butterfly_obj;
+    public GameObject[] butterfly_obj, butterfly2_obj;
     public Sprite[] butterfly_spr, butterfly2_spr;
+
+    public GameObject potionTaost_obj;
 
     List<Dictionary<string, object>> data_end; //csv파일
 
     public Text dDay_txt;
 
     public int end_i;
+
+    public GameObject putingYN_obj;
     
     // Start is called before the first frame update
     void Start()
@@ -67,12 +71,56 @@ public class PotionEvt : MonoBehaviour
     //포션에 넣어서 값을 저장한상태
     public void PutIng()
     {
+
+        putingYN_obj.SetActive(true);
+        int a = PlayerPrefs.GetInt("ingn1", 0) + PlayerPrefs.GetInt("ingn2", 0) + PlayerPrefs.GetInt("ingn3", 0) + PlayerPrefs.GetInt("ingn4", 0);
+        if (a == 0)
+        {
+            potionTaost_obj.SetActive(true);
+        }
+        else
+        {
+            putingYN_obj.SetActive(true);
+        }
+    }
+
+
+    public void SetButterin()
+    {
+        if (PlayerPrefs.GetInt("butterin5", 0)==1)
+        {
+            butterfly_obj[0].SetActive(false);
+            butterfly2_obj[0].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("butterin6", 0) == 1)
+        {
+            butterfly_obj[1].SetActive(false);
+            butterfly2_obj[1].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("butterin7", 0) == 1)
+        {
+            butterfly_obj[2].SetActive(false);
+            butterfly2_obj[2].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("butterin8", 0) == 1)
+        {
+            butterfly_obj[3].SetActive(false);
+            butterfly2_obj[3].SetActive(true);
+        }
+    }
+
+    public void ClosePoionToast()
+    {
+        potionTaost_obj.SetActive(false);
+    }
+
+    public void PutY()
+    {
+        putingYN_obj.SetActive(false);
         PlayerPrefs.SetInt("useding1", PlayerPrefs.GetInt("useding1", 0) + PlayerPrefs.GetInt("ing1", 0) - PlayerPrefs.GetInt("ingn1", 0));
         PlayerPrefs.SetInt("useding2", PlayerPrefs.GetInt("useding2", 0) + PlayerPrefs.GetInt("ing2", 0) - PlayerPrefs.GetInt("ingn2", 0));
         PlayerPrefs.SetInt("useding3", PlayerPrefs.GetInt("useding3", 0) + PlayerPrefs.GetInt("ing3", 0) - PlayerPrefs.GetInt("ingn3", 0));
         PlayerPrefs.SetInt("useding4", PlayerPrefs.GetInt("useding4", 0) + PlayerPrefs.GetInt("ing4", 0) - PlayerPrefs.GetInt("ingn4", 0));
-
-
         PlayerPrefs.SetInt("ing1", PlayerPrefs.GetInt("ingn1", 0));
         PlayerPrefs.SetInt("ing2", PlayerPrefs.GetInt("ingn2", 0));
         PlayerPrefs.SetInt("ing3", PlayerPrefs.GetInt("ingn3", 0));
@@ -80,9 +128,14 @@ public class PotionEvt : MonoBehaviour
         GM.GetComponent<MainBtnEvt>().CloseBox();
         SetColor();
         DayEnd();
-
         PlayerPrefs.SetInt("done", 0);
     }
+
+    public void PutN()
+    {
+        putingYN_obj.SetActive(false);
+    }
+
 
     //하루가 지날때
     public void DayEnd()
@@ -90,6 +143,7 @@ public class PotionEvt : MonoBehaviour
         if(PlayerPrefs.GetInt("dayint", 1) == 7)
         {
             Ending();
+            dDay_txt.text = "1";
         }
         else
         {
@@ -216,18 +270,59 @@ public class PotionEvt : MonoBehaviour
             default:
                 break;
         }
-        if (num2 > num)
+        int numsave = num;
+        if (num2 < num)
         {
             b = 0 + num;
             num = 0 + num2;
             num2 = 0 + b;
         }
+        if (i2<4|| i2 < 4)
+        {
+            num2 = 0;
+        }
+        int endhelp_i = 0;
+
+        if (PlayerPrefs.GetInt("butterin5", 0) == 1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("butterin6", 0) == 1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("butterin7", 0) == 1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("butterin8", 0) == 1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("useding1", 0)>1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("useding2", 0) > 1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("useding3", 0) > 1)
+        {
+            endhelp_i++;
+        }
+        if (PlayerPrefs.GetInt("useding4", 0) > 1)
+        {
+            endhelp_i++;
+        }
+
+
         //빨초파노
         if (num == 1 && num2 == 4)
         {
             end1_obj.GetComponent<Image>().sprite = potion_spr[4];
             end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[4];
-            end_i = 1;
+            end_i = 4;
             end_txt.text = "" + data_end[0]["potion" + 5];
             end2_txt.text = "" + data_end[1]["potion" + 5];
             PlayerPrefs.SetInt("checkend" + 4, 2);
@@ -236,7 +331,7 @@ public class PotionEvt : MonoBehaviour
         {
             end1_obj.GetComponent<Image>().sprite = potion_spr[5];
             end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[5];
-            end_i = 1;
+            end_i = 5;
             end_txt.text = "" + data_end[0]["potion" + 6];
             end2_txt.text = "" + data_end[1]["potion" + 6];
             PlayerPrefs.SetInt("checkend" + 5, 2);
@@ -245,7 +340,7 @@ public class PotionEvt : MonoBehaviour
         {
             end1_obj.GetComponent<Image>().sprite = potion_spr[6];
             end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[6];
-            end_i = 1;
+            end_i = 6;
             end_txt.text = "" + data_end[0]["potion" + 7];
             end2_txt.text = "" + data_end[1]["potion" + 7];
             PlayerPrefs.SetInt("checkend" + 6, 2);
@@ -254,7 +349,7 @@ public class PotionEvt : MonoBehaviour
         {
             end1_obj.GetComponent<Image>().sprite = potion_spr[7];
             end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[7];
-            end_i = 1;
+            end_i = 7;
             end_txt.text = "" + data_end[0]["potion" + 8];
             end2_txt.text = "" + data_end[1]["potion" + 8];
             PlayerPrefs.SetInt("checkend" + 7, 2);
@@ -263,14 +358,14 @@ public class PotionEvt : MonoBehaviour
         {
             end1_obj.GetComponent<Image>().sprite = potion_spr[8];
             end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[8];
-            end_i = 1;
+            end_i = 8;
             end_txt.text = "" + data_end[0]["potion" + 9];
             end2_txt.text = "" + data_end[1]["potion" + 9];
             PlayerPrefs.SetInt("checkend" + 8, 2);
         }
         else
         {
-            switch (num)
+            switch (numsave)
             {
                 case 0:
                     break;
@@ -312,6 +407,10 @@ public class PotionEvt : MonoBehaviour
         }
 
         DayEnding_obj.SetActive(true);
+        endingBtnL_obj.SetActive(false);
+        page1_obj.SetActive(true);
+        page2_obj.SetActive(false);
+        pageNum_i = 0;
         StopCoroutine("updateSec");
         StartCoroutine("updateSec");
         SetReSet();
@@ -319,7 +418,7 @@ public class PotionEvt : MonoBehaviour
 
     void SetReSet()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 1; i < 5; i++)
         {
             PlayerPrefs.SetInt("useding"+i, 0);
             PlayerPrefs.SetInt("ing" + i, 0);
@@ -327,57 +426,62 @@ public class PotionEvt : MonoBehaviour
             PlayerPrefs.SetInt("Butterfly" + i, 0);
         }
         PlayerPrefs.SetInt("ingcolor", 0);
-        PlayerPrefs.SetInt("done", 0);
+        potionColor_obj.GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f);
+        potionColorIng_obj.SetActive(false);
+        PlayerPrefs.Save();
     }
 
-    void SetButter()
+    public void SetButter()
     {
         //장소 코드 0:숲, 1:물, 2:동굴, 3:용암
-        for (int i = 0; i < 4; i++)
+        for (int i = 1; i < 5; i++)
         {
             if (PlayerPrefs.GetInt("Butterfly"+i, 0) == 1)
             {
-                butterfly_obj[i].SetActive(true);
+                butterfly_obj[i-1].SetActive(true);
             }
             else
             {
-                butterfly_obj[i].SetActive(false);
+                butterfly_obj[i-1].SetActive(false);
             }
         }
     }
 
 
     //빨초파노
+
+    /// <summary>
+    /// 포션색깔
+    /// </summary>
     public void SetColor()
     {
-
         int cp = 0;
         int bp = 0;
         int nump = 1;
 
         cp = PlayerPrefs.GetInt("useding1", 0);
+        if (cp == 0)
+        {
+            nump = 0;
+        }
         bp= PlayerPrefs.GetInt("useding2", 0);
         if (bp > cp)
         {
             cp = 0 + bp;
             nump = 2;
         }
-
         bp = PlayerPrefs.GetInt("useding3", 0);
         if (bp > cp)
         {
             cp = 0 + bp;
             nump = 3;
         }
-
         bp = PlayerPrefs.GetInt("useding4", 0);
         if (bp > cp)
         {
             cp = 0 + bp;
             nump = 4;
         }
-
-
         switch (nump)
         {
             case 1:
@@ -396,7 +500,6 @@ public class PotionEvt : MonoBehaviour
                 potionColor_obj.GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f);
                 break;
         }
-
     }
 
     public void SetIngColor(int nump)
@@ -491,6 +594,7 @@ public class PotionEvt : MonoBehaviour
             switch (k)
             {
                 case 0:
+                    potionColorIng_obj.GetComponent<Image>().sprite = potionColorIng_spr[PlayerPrefs.GetInt("ingcolor", 0)];
                     butterfly_obj[0].GetComponent<Image>().sprite = butterfly_spr[0];
                     butterfly_obj[1].GetComponent<Image>().sprite = butterfly_spr[1];
                     butterfly_obj[2].GetComponent<Image>().sprite = butterfly_spr[2];
@@ -498,6 +602,7 @@ public class PotionEvt : MonoBehaviour
                     k++;
                     break;
                 case 1:
+                    potionColorIng_obj.GetComponent<Image>().sprite = potionColorIng2_spr[PlayerPrefs.GetInt("ingcolor", 0)];
                     butterfly_obj[0].GetComponent<Image>().sprite = butterfly2_spr[0];
                     butterfly_obj[1].GetComponent<Image>().sprite = butterfly2_spr[1];
                     butterfly_obj[2].GetComponent<Image>().sprite = butterfly2_spr[2];

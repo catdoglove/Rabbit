@@ -69,8 +69,13 @@ public class SoundHandler : MonoBehaviour {
         if (BGM_sld != null)
         {
             BGM_sld.value = BGMVol_f;
+            BGM.volume = BGM_sld.value;
         }
-        BGM.volume = BGM_sld.value;
+        else
+        {
+
+            BGM.volume = BGMVol_f;
+        }
 
         //BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
        // BGS_sld.value = BGSVol_f;
@@ -80,7 +85,11 @@ public class SoundHandler : MonoBehaviour {
         if (SE_sld != null)
         {
             SE_sld.value = SEVol_f;
+            SE.volume = SE_sld.value;
         }
-        SE.volume = SE_sld.value;
+        else
+        {
+            SE.volume = SEVol_f;
+        }
     }
 }
