@@ -76,7 +76,6 @@ public class MakePotion : MonoBehaviour
         //소리를 불러오는 부분 나중에 할것
         //audio_obj = GameObject.Find("AudioSound");
         //audio_obj.GetComponent<SoundEvt>().stickerSound();
-
         if (PlayerPrefs.GetInt("ing" + num_str, 0) != 0)
         {
             if (wldObjectPos.x > -1 && wldObjectPos.x < 1.1)
@@ -88,20 +87,25 @@ public class MakePotion : MonoBehaviour
                     {
                         PlayerPrefs.SetInt("ingn" + num_str, PlayerPrefs.GetInt("ingn" + num_str, 0) - 1);
                         GM.GetComponent<PotionEvt>().SetIng();
+                        GM.GetComponent<PotionEvt>().SetIngColor(int.Parse(num_str)-1);
                     }
                 }
             }
         }
-        
         check = false;
     }
-
-
+    
     void SetNum()
     {
         PlayerPrefs.SetInt("ing1", PlayerPrefs.GetInt("ingn1", 0));
         PlayerPrefs.SetInt("ing2", PlayerPrefs.GetInt("ingn2", 0));
         PlayerPrefs.SetInt("ing3", PlayerPrefs.GetInt("ingn3", 0));
         PlayerPrefs.SetInt("ing4", PlayerPrefs.GetInt("ingn4", 0));
+    }
+
+
+
+    void SetPotionColor()
+    {
     }
 }

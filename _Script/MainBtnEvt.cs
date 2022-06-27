@@ -13,6 +13,8 @@ public class MainBtnEvt : MonoBehaviour
     public int check_i;
     public GameObject GM;
 
+    public GameObject toast_obj, toast2_obj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,10 +50,23 @@ public class MainBtnEvt : MonoBehaviour
     }
     public void OpenGoOut()
     {
-        goOut_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("done", 0) == 1)
+        {
+            toast_obj.SetActive(true);
+        }
+        else
+        {
+            goOut_obj.SetActive(true);
+        }
     }
 
-    public void CloseGoOut()
+    public void CloseToast()
+    {
+        toast_obj.SetActive(false);
+        toast2_obj.SetActive(false);
+    }
+
+        public void CloseGoOut()
     {
         goOut_obj.SetActive(false);
     }
@@ -110,6 +125,7 @@ public class MainBtnEvt : MonoBehaviour
 
     public void GoOut()
     {
+        //테스트
         PlayerPrefs.SetInt("hearti", 2);
         if (PlayerPrefs.GetInt("hearti", 3) > 0)
         {
@@ -117,6 +133,10 @@ public class MainBtnEvt : MonoBehaviour
             PlayerPrefs.SetInt("whereisit", check_i);
             PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
             PlayerPrefs.SetInt("done",1);
+        }
+        else
+        {
+            toast2_obj.SetActive(true);
         }
     }
 
