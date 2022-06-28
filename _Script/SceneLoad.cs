@@ -12,7 +12,7 @@ public class SceneLoad : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.SetInt("titlesets", 1);
+        PlayerPrefs.SetInt("closetile", 0);
     }
 
     // Use this for initialization

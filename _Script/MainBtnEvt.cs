@@ -14,19 +14,50 @@ public class MainBtnEvt : MonoBehaviour
     public GameObject GM;
 
     public GameObject toast_obj, toast2_obj;
+    public GameObject gameClose_obj;
 
     // Start is called before the first frame update
     void Start()
     {
         check_i = 0;
         PlayerPrefs.SetInt("whereisit", 5);
-    }
-    
+        if (PlayerPrefs.GetInt("closetile", 0) == 1)
+        {
+            title_obj.SetActive(false);
+        }
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameClose_obj.SetActive(true);
+        }
+    }
+
+    public void closeY()
+    {
+        Application.Quit();
+    }
+    public void closeN()
+    {
+        gameClose_obj.SetActive(false);
+    }
+
+    public void showInfoLink()
+    {
+        Application.OpenURL("https://docs.google.com/document/d/1JFdyCym-5Kxns2xcA-w8W5ir5YiL4J-6JrJeMF8zcuk/edit?usp=sharing");
+    }
 
     public void CloseTitle()
     {
         title_obj.SetActive(false);
+        PlayerPrefs.SetInt("closetile",1);
+    }
+    public void OpenTitle()
+    {
+        title_obj.SetActive(true);
     }
 
     public void OpenOption()
@@ -80,8 +111,8 @@ public class MainBtnEvt : MonoBehaviour
         PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 0));
         PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 0));
         GM.GetComponent<PotionEvt>().SetButter();
-        GM.GetComponent<PotionEvt>().SetIng();
         GM.GetComponent<PotionEvt>().SetButterin();
+        GM.GetComponent<PotionEvt>().SetIng();
     }
 
     public void CloseBox()
@@ -91,6 +122,7 @@ public class MainBtnEvt : MonoBehaviour
         PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 0));
         PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 0));
         ingBox_obj.SetActive(false);
+        PlayerPrefs.SetInt("checkingput", 0);
     }
 
     //숲

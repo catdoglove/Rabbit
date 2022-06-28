@@ -13,7 +13,7 @@ public class MakePotion : MonoBehaviour
     public string name_str, num_str;
     public Sprite[] butter_spr;
     public Sprite name_spr;
-    public GameObject GM;
+    public GameObject GM, audio_obj;
 
     // Start is called before the first frame update
     void Start()
@@ -114,10 +114,8 @@ public class MakePotion : MonoBehaviour
 
     public void OnMouseUp()
     {
-        Debug.Log("a");
-        //소리를 불러오는 부분 나중에 할것
-        //audio_obj = GameObject.Find("AudioSound");
-        //audio_obj.GetComponent<SoundEvt>().stickerSound();
+        audio_obj = GameObject.Find("soundSE");
+        audio_obj.GetComponent<SoundEvt>().PutSound();
         if (wldObjectPos.x > -1 && wldObjectPos.x < 1.1)
         {
             if (wldObjectPos.y < 0.4 && wldObjectPos.y > -3)
@@ -126,6 +124,7 @@ public class MakePotion : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("butterin" + num_str, 1);
                     GM.GetComponent<PotionEvt>().SetButterin();
+                    PlayerPrefs.SetInt("checkingput", 1);
                 }
                 else if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
                 {
@@ -134,6 +133,7 @@ public class MakePotion : MonoBehaviour
                         PlayerPrefs.SetInt("ingn" + num_str, PlayerPrefs.GetInt("ingn" + num_str, 0) - 1);
                         GM.GetComponent<PotionEvt>().SetIng();
                         GM.GetComponent<PotionEvt>().SetIngColor(int.Parse(num_str) - 1);
+                        PlayerPrefs.SetInt("checkingput", 1);
                     }
                 }
             }

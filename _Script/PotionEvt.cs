@@ -11,7 +11,7 @@ public class PotionEvt : MonoBehaviour
     public Text day_txt;
     public int pageNum_i;
     public GameObject page1_obj, page2_obj;
-    public GameObject GM;
+    public GameObject GM, GMS;
     public GameObject end1_obj, end2_obj;
     public Sprite[] potion_spr, potionEnd1_spr, potionEnd2_spr;
     public Text end_txt, end2_txt;
@@ -53,6 +53,17 @@ public class PotionEvt : MonoBehaviour
         ing2_txt.text = "" + PlayerPrefs.GetInt("ingn2", 0);
         ing3_txt.text = "" + PlayerPrefs.GetInt("ingn3", 0);
         ing4_txt.text = "" + PlayerPrefs.GetInt("ingn4", 0);
+        for (int i = 0; i < 4; i++)
+        {
+            if (PlayerPrefs.GetInt("butterin" + (i + 5), 0)==0)
+            {
+                butterfly2_obj[i].SetActive(false);
+            }
+            else
+            {
+                butterfly2_obj[i].SetActive(true);
+            }
+        }
     }
 
     //초기화해서 원래갯수로 돌아온 재료 상태
@@ -66,13 +77,13 @@ public class PotionEvt : MonoBehaviour
         PlayerPrefs.SetInt("ingn2", PlayerPrefs.GetInt("ing2", 0));
         PlayerPrefs.SetInt("ingn3", PlayerPrefs.GetInt("ing3", 0));
         PlayerPrefs.SetInt("ingn4", PlayerPrefs.GetInt("ing4", 0));
+        PlayerPrefs.SetInt("checkingput", 0);
     }
 
     //포션에 넣어서 값을 저장한상태
     public void PutIng()
     {
-        int a = PlayerPrefs.GetInt("ingn1", 0) + PlayerPrefs.GetInt("ingn2", 0) + PlayerPrefs.GetInt("ingn3", 0) + PlayerPrefs.GetInt("ingn4", 0);
-        if (a == 0)
+        if (PlayerPrefs.GetInt("checkingput", 0) ==0)
         {
             potionTaost_obj.SetActive(true);
         }
@@ -127,6 +138,7 @@ public class PotionEvt : MonoBehaviour
         SetColor();
         DayEnd();
         PlayerPrefs.SetInt("done", 0);
+        PlayerPrefs.SetInt("checkingput", 0);
     }
 
     public void PutN()
@@ -297,7 +309,7 @@ public class PotionEvt : MonoBehaviour
         {
             endhelp_i++;
         }
-        if (PlayerPrefs.GetInt("useding1", 0)>1)
+        if (PlayerPrefs.GetInt("useding1", 0) > 1)
         {
             endhelp_i++;
         }
@@ -314,93 +326,106 @@ public class PotionEvt : MonoBehaviour
             endhelp_i++;
         }
 
-
-        //빨초파노
-        if (num == 1 && num2 == 4)
+        if (endhelp_i == 8)
         {
-            end1_obj.GetComponent<Image>().sprite = potion_spr[4];
-            end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[4];
-            end_i = 4;
-            end_txt.text = "" + data_end[0]["potion" + 5];
-            end2_txt.text = "" + data_end[1]["potion" + 5];
-            PlayerPrefs.SetInt("checkend" + 4, 2);
-        }
-        else if (num == 3 && num2 == 4)
-        {
-            end1_obj.GetComponent<Image>().sprite = potion_spr[5];
-            end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[5];
-            end_i = 5;
-            end_txt.text = "" + data_end[0]["potion" + 6];
-            end2_txt.text = "" + data_end[1]["potion" + 6];
-            PlayerPrefs.SetInt("checkend" + 5, 2);
-        }
-        else if (num == 1 && num2 == 3)
-        {
-            end1_obj.GetComponent<Image>().sprite = potion_spr[6];
-            end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[6];
-            end_i = 6;
-            end_txt.text = "" + data_end[0]["potion" + 7];
-            end2_txt.text = "" + data_end[1]["potion" + 7];
-            PlayerPrefs.SetInt("checkend" + 6, 2);
-        }
-        else if (num == 2 && num2 == 3)
-        {
-            end1_obj.GetComponent<Image>().sprite = potion_spr[7];
-            end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[7];
-            end_i = 7;
-            end_txt.text = "" + data_end[0]["potion" + 8];
-            end2_txt.text = "" + data_end[1]["potion" + 8];
-            PlayerPrefs.SetInt("checkend" + 7, 2);
-        }
-        else if (num == 2 && num2 == 4)
-        {
-            end1_obj.GetComponent<Image>().sprite = potion_spr[8];
-            end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[8];
-            end_i = 8;
-            end_txt.text = "" + data_end[0]["potion" + 9];
-            end2_txt.text = "" + data_end[1]["potion" + 9];
-            PlayerPrefs.SetInt("checkend" + 8, 2);
+            end1_obj.GetComponent<Image>().sprite = potion_spr[9];
+            end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[9];
+            end_i = 9;
+            end_txt.text = "" + data_end[0]["potion" + 10];
+            end2_txt.text = "" + data_end[1]["potion" + 10];
+            PlayerPrefs.SetInt("checkend" + 9, 2);
         }
         else
         {
-            switch (numsave)
+
+
+            //빨초파노
+            if (num == 1 && num2 == 4)
             {
-                case 0:
-                    break;
-                case 1:
-                    end1_obj.GetComponent<Image>().sprite = potion_spr[1];
-                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[1];
-                    end_i = 1;
-                    end_txt.text = "" + data_end[0]["potion" + 2];
-                    end2_txt.text = "" + data_end[1]["potion" + 2];
-                    PlayerPrefs.SetInt("checkend" + 1, 2);
-                    break;
-                case 2:
-                    end1_obj.GetComponent<Image>().sprite = potion_spr[0];
-                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[0];
-                    end_i = 0;
-                    end_txt.text = "" + data_end[0]["potion" + 1];
-                    end2_txt.text = "" + data_end[1]["potion" + 1];
-                    PlayerPrefs.SetInt("checkend" + 0, 2);
-                    break;
-                case 3:
-                    end1_obj.GetComponent<Image>().sprite = potion_spr[3];
-                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[3];
-                    end_i = 3;
-                    end_txt.text = "" + data_end[0]["potion" + 4];
-                    end2_txt.text = "" + data_end[1]["potion" + 4];
-                    PlayerPrefs.SetInt("checkend" + 3, 2);
-                    break;
-                case 4:
-                    end1_obj.GetComponent<Image>().sprite = potion_spr[2];
-                    end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[2];
-                    end_i = 2;
-                    end_txt.text = "" + data_end[0]["potion" + 3];
-                    end2_txt.text = "" + data_end[1]["potion" + 3];
-                    PlayerPrefs.SetInt("checkend" + 2, 2);
-                    break;
-                default:
-                    break;
+                end1_obj.GetComponent<Image>().sprite = potion_spr[4];
+                end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[4];
+                end_i = 4;
+                end_txt.text = "" + data_end[0]["potion" + 5];
+                end2_txt.text = "" + data_end[1]["potion" + 5];
+                PlayerPrefs.SetInt("checkend" + 4, 2);
+            }
+            else if (num == 3 && num2 == 4)
+            {
+                end1_obj.GetComponent<Image>().sprite = potion_spr[5];
+                end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[5];
+                end_i = 5;
+                end_txt.text = "" + data_end[0]["potion" + 6];
+                end2_txt.text = "" + data_end[1]["potion" + 6];
+                PlayerPrefs.SetInt("checkend" + 5, 2);
+            }
+            else if (num == 1 && num2 == 3)
+            {
+                end1_obj.GetComponent<Image>().sprite = potion_spr[6];
+                end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[6];
+                end_i = 6;
+                end_txt.text = "" + data_end[0]["potion" + 7];
+                end2_txt.text = "" + data_end[1]["potion" + 7];
+                PlayerPrefs.SetInt("checkend" + 6, 2);
+            }
+            else if (num == 2 && num2 == 3)
+            {
+                end1_obj.GetComponent<Image>().sprite = potion_spr[7];
+                end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[7];
+                end_i = 7;
+                end_txt.text = "" + data_end[0]["potion" + 8];
+                end2_txt.text = "" + data_end[1]["potion" + 8];
+                PlayerPrefs.SetInt("checkend" + 7, 2);
+            }
+            else if (num == 2 && num2 == 4)
+            {
+                end1_obj.GetComponent<Image>().sprite = potion_spr[8];
+                end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[8];
+                end_i = 8;
+                end_txt.text = "" + data_end[0]["potion" + 9];
+                end2_txt.text = "" + data_end[1]["potion" + 9];
+                PlayerPrefs.SetInt("checkend" + 8, 2);
+            }
+            else
+            {
+                switch (numsave)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        end1_obj.GetComponent<Image>().sprite = potion_spr[1];
+                        end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[1];
+                        end_i = 1;
+                        end_txt.text = "" + data_end[0]["potion" + 2];
+                        end2_txt.text = "" + data_end[1]["potion" + 2];
+                        PlayerPrefs.SetInt("checkend" + 1, 2);
+                        break;
+                    case 2:
+                        end1_obj.GetComponent<Image>().sprite = potion_spr[0];
+                        end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[0];
+                        end_i = 0;
+                        end_txt.text = "" + data_end[0]["potion" + 1];
+                        end2_txt.text = "" + data_end[1]["potion" + 1];
+                        PlayerPrefs.SetInt("checkend" + 0, 2);
+                        break;
+                    case 3:
+                        end1_obj.GetComponent<Image>().sprite = potion_spr[3];
+                        end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[3];
+                        end_i = 3;
+                        end_txt.text = "" + data_end[0]["potion" + 4];
+                        end2_txt.text = "" + data_end[1]["potion" + 4];
+                        PlayerPrefs.SetInt("checkend" + 3, 2);
+                        break;
+                    case 4:
+                        end1_obj.GetComponent<Image>().sprite = potion_spr[2];
+                        end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[2];
+                        end_i = 2;
+                        end_txt.text = "" + data_end[0]["potion" + 3];
+                        end2_txt.text = "" + data_end[1]["potion" + 3];
+                        PlayerPrefs.SetInt("checkend" + 2, 2);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -409,6 +434,9 @@ public class PotionEvt : MonoBehaviour
         page1_obj.SetActive(true);
         page2_obj.SetActive(false);
         pageNum_i = 0;
+
+        GMS.GetComponent<SoundEvt>().SetEnd();
+
         StopCoroutine("updateSec");
         StartCoroutine("updateSec");
         SetReSet();
@@ -422,8 +450,10 @@ public class PotionEvt : MonoBehaviour
             PlayerPrefs.SetInt("ing" + i, 0);
             PlayerPrefs.SetInt("ingn" + i, 0);
             PlayerPrefs.SetInt("Butterfly" + i, 0);
+            PlayerPrefs.SetInt("butterin" + (i+4), 0);
         }
         PlayerPrefs.SetInt("ingcolor", 0);
+        PlayerPrefs.SetInt("done", 0);
         potionColor_obj.GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f);
         potionColorIng_obj.SetActive(false);
         PlayerPrefs.Save();
@@ -520,7 +550,9 @@ public class PotionEvt : MonoBehaviour
                 break;
             case 1:
                 DayEnding_obj.SetActive(false);
+                GM.GetComponent<MainBtnEvt>().OpenTitle();
                 StopCoroutine("updateSec");
+                GMS.GetComponent<SoundEvt>().SetOri();
                 break;
             default:
                 break;

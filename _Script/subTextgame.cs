@@ -191,15 +191,42 @@ public class subTextgame : MonoBehaviour
     void butterflyEvt()//나비 획득 이벤트
     {
         randNum = Random.Range(0, 3); //0~(line_txt-1)
-        if (randNum == 1)
+
+        int c = 0;
+        switch (areaCode)
         {
-            butterflyImg.SetActive(true);
-            PlayerPrefs.SetInt("getButterfly", 999);
+            case 0:
+                c = 2;
+                break;
+            case 1:
+                c = 3;
+                break;
+            case 2:
+                c = 4;
+                break;
+            case 3:
+                c = 1;
+                break;
+            default:
+                break;
+        }
+
+        if (PlayerPrefs.GetInt("Butterfly" + c, 0) == 1)
+        {
+            nextNum++;
         }
         else
         {
-            Debug.Log("넘어감");
-            nextNum++;
+            if (randNum == 1)
+            {
+                butterflyImg.SetActive(true);
+                PlayerPrefs.SetInt("getButterfly", 999);
+            }
+            else
+            {
+                Debug.Log("넘어감");
+                nextNum++;
+            }
         }
     }
 
@@ -237,7 +264,10 @@ public class subTextgame : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("ing" + c, PlayerPrefs.GetInt("ing" + c, 0)+PlayerPrefs.GetInt("martialCount", 0));
-        PlayerPrefs.SetInt("Butterfly" + c, 1);
+        if (PlayerPrefs.GetInt("getButterfly", 0) == 999)
+        {
+            PlayerPrefs.SetInt("Butterfly" + c, 1);
+        }
         StartCoroutine("LoadMain");
         PlayerPrefs.SetInt("whereisit", 5);
     }
