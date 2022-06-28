@@ -71,8 +71,6 @@ public class PotionEvt : MonoBehaviour
     //포션에 넣어서 값을 저장한상태
     public void PutIng()
     {
-
-        putingYN_obj.SetActive(true);
         int a = PlayerPrefs.GetInt("ingn1", 0) + PlayerPrefs.GetInt("ingn2", 0) + PlayerPrefs.GetInt("ingn3", 0) + PlayerPrefs.GetInt("ingn4", 0);
         if (a == 0)
         {

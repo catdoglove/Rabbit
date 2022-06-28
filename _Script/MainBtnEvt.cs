@@ -67,7 +67,7 @@ public class MainBtnEvt : MonoBehaviour
         toast2_obj.SetActive(false);
     }
 
-        public void CloseGoOut()
+    public void CloseGoOut()
     {
         goOut_obj.SetActive(false);
     }

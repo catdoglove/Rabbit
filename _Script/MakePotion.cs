@@ -11,8 +11,8 @@ public class MakePotion : MonoBehaviour
 
     public GameObject ing_obj1, ing_obj2, ing_obj3, ing_obj4, ing_obj5, ing_obj6, ing_obj7, ing_obj8;
     public string name_str, num_str;
-    public GameObject[] butter_obj;
-
+    public Sprite[] butter_spr;
+    public Sprite name_spr;
     public GameObject GM;
 
     // Start is called before the first frame update
@@ -40,21 +40,25 @@ public class MakePotion : MonoBehaviour
         if (name_str.Substring(2, 1) == "5")
         {
             ing_obj1 = ing_obj5;
+            name_spr = butter_spr[0];
             num_str = "5";
         }
         if (name_str.Substring(2, 1) == "6")
         {
             ing_obj1 = ing_obj6;
+            name_spr = butter_spr[1];
             num_str = "6";
         }
         if (name_str.Substring(2, 1) == "7")
         {
             ing_obj1 = ing_obj7;
+            name_spr = butter_spr[2];
             num_str = "7";
         }
         if (name_str.Substring(2, 1) == "8")
         {
             ing_obj1 = ing_obj8;
+            name_spr = butter_spr[3];
             num_str = "8";
         }
     }
@@ -68,6 +72,11 @@ public class MakePotion : MonoBehaviour
             Vector2 mouseDragPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             wldObjectPos = Camera.main.ScreenToWorldPoint(mouseDragPos);
             transform.position = Vector2.MoveTowards(transform.position, wldObjectPos, 0.9f);
+
+            if (int.Parse(num_str) >= 5)
+            {
+                ing_obj1.GetComponent<SpriteRenderer>().sprite = name_spr;
+            }
         }
         else
         {//EndOfIf
@@ -75,7 +84,8 @@ public class MakePotion : MonoBehaviour
 
             if (int.Parse(num_str) >= 5)
             {
-                //transform.position = new Vector2(0f, 0f);
+                ing_obj1.GetComponent<SpriteRenderer>().sprite = butter_spr[4];
+                transform.position = new Vector2(ing_obj2.transform.position.x, ing_obj2.transform.position.y);
             }
         }
     }
@@ -85,14 +95,15 @@ public class MakePotion : MonoBehaviour
     {
         if (check)
         {
-
+            
         }
         else
         {
         }
+        
         if (int.Parse(num_str) >= 5)
         {
-
+            check = true;
         }
         else if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
         {
@@ -103,26 +114,26 @@ public class MakePotion : MonoBehaviour
 
     public void OnMouseUp()
     {
+        Debug.Log("a");
         //소리를 불러오는 부분 나중에 할것
         //audio_obj = GameObject.Find("AudioSound");
         //audio_obj.GetComponent<SoundEvt>().stickerSound();
-        if (PlayerPrefs.GetInt("ing" + num_str, 0) != 0)
+        if (wldObjectPos.x > -1 && wldObjectPos.x < 1.1)
         {
-            if (wldObjectPos.x > -1 && wldObjectPos.x < 1.1)
+            if (wldObjectPos.y < 0.4 && wldObjectPos.y > -3)
             {
-                if (wldObjectPos.y < 0.4 && wldObjectPos.y > -3)
+                if (int.Parse(num_str) >= 5)
                 {
-
-                    if (int.Parse(num_str) >= 5)
-                    {
-                        PlayerPrefs.SetInt("butterin"+ num_str, 1);
-                        GM.GetComponent<PotionEvt>().SetButterin();
-                    }
-                    else if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
+                    PlayerPrefs.SetInt("butterin" + num_str, 1);
+                    GM.GetComponent<PotionEvt>().SetButterin();
+                }
+                else if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
+                {
+                    if (PlayerPrefs.GetInt("ing" + num_str, 0) != 0)
                     {
                         PlayerPrefs.SetInt("ingn" + num_str, PlayerPrefs.GetInt("ingn" + num_str, 0) - 1);
                         GM.GetComponent<PotionEvt>().SetIng();
-                        GM.GetComponent<PotionEvt>().SetIngColor(int.Parse(num_str)-1);
+                        GM.GetComponent<PotionEvt>().SetIngColor(int.Parse(num_str) - 1);
                     }
                 }
             }
