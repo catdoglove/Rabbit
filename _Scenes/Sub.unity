@@ -1125,6 +1125,7 @@ GameObject:
   - component: {fileID: 655338129}
   - component: {fileID: 655338128}
   - component: {fileID: 655338131}
+  - component: {fileID: 655338132}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1219,6 +1220,18 @@ MonoBehaviour:
   btnTxt1: {fileID: 499634447}
   btnTxt2: {fileID: 378687348}
   resultTotal: {fileID: 893533249}
+--- !u!114 &655338132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655338127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da12a28378de1a489b64af724cdde01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &699266190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,6 +3373,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1061431347}
         m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 655338132}
+        m_MethodName: DestroyBannerAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

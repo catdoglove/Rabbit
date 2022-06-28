@@ -8,13 +8,14 @@ public class MainBtnEvt : MonoBehaviour
 {
 
     AsyncOperation async;
-    public GameObject title_obj, option_obj, book_obj, goOut_obj, ingBox_obj;
+    public GameObject title_obj, option_obj, book_obj, goOut_obj, ingBox_obj, rabbit_obj;
     public GameObject[] check_obj;
     public int check_i;
     public GameObject GM;
 
     public GameObject toast_obj, toast2_obj;
     public GameObject gameClose_obj;
+    float y;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,31 @@ public class MainBtnEvt : MonoBehaviour
         {
             title_obj.SetActive(false);
         }
+        StartCoroutine("moverabbit");
+    }
 
+    IEnumerator moverabbit()
+    {
+        PlayerPrefs.SetInt("moverabbit", 0);
+        y = rabbit_obj.transform.position.y;
+
+        int aa = 0;
+        while (aa == 0)
+        {
+
+            y = y + 0.05f;
+            aa++;
+            rabbit_obj.transform.position = new Vector3(rabbit_obj.transform.position.x, y, rabbit_obj.transform.position.z);
+            yield return new WaitForSeconds(1f);
+
+            if (aa == 1)
+            {
+                y = y - 0.05f;
+                aa--;
+                rabbit_obj.transform.position = new Vector3(rabbit_obj.transform.position.x, y, rabbit_obj.transform.position.z);
+                yield return new WaitForSeconds(1f);
+            }
+        }
     }
 
     private void Update()

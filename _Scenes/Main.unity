@@ -4700,7 +4700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -21.2}
+  m_AnchoredPosition: {x: 160, y: -28.999968}
   m_SizeDelta: {x: 460.92963, y: 326.224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &381591472
@@ -7920,6 +7920,7 @@ MonoBehaviour:
   book_obj: {fileID: 965974798}
   goOut_obj: {fileID: 231725938}
   ingBox_obj: {fileID: 539849483}
+  rabbit_obj: {fileID: 651991642}
   check_obj:
   - {fileID: 1917373707}
   - {fileID: 956536210}
@@ -8268,7 +8269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -21.2}
+  m_AnchoredPosition: {x: 160, y: -29}
   m_SizeDelta: {x: 460.92963, y: 326.224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &730139961
@@ -15979,7 +15980,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 90
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
