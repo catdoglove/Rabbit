@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SoundEvt : MonoBehaviour
 {
-    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water, se_cancle, se_box, se_foods, se_talk, se_pencil;
-    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water, sp_cancle, sp_box, sp_foods, sp_talk, sp_pencil;
+    public AudioSource se_button, se_day, se_get, se_help;
+    public AudioClip sp_button, sp_day, sp_get, sp_help;
 
     public AudioSource BGM, BGS,se_put;
     public AudioClip sp_end, sp_ori, sp_put;
@@ -23,21 +23,33 @@ public class SoundEvt : MonoBehaviour
         se_button.loop = false;
         se_button.Play();
     }
-    //티비
-    public void TVSound()
+
+    //하루지남
+    public void daySound()
     {
-        se_TV = gameObject.GetComponent<AudioSource>();
-        se_TV.clip = sp_TV;
-        se_TV.loop = false;
-        se_TV.Play();
+        se_day = gameObject.GetComponent<AudioSource>();
+        se_day.clip = sp_day;
+        se_day.loop = false;
+        se_day.Play();
     }
-    //취소
-    public void cancleSound()
+
+    //재료얻음
+    public void getSound()
     {
-        se_cancle = gameObject.GetComponent<AudioSource>();
-        se_cancle.clip = sp_cancle;
-        se_cancle.loop = false;
-        se_cancle.Play();
+        se_get = gameObject.GetComponent<AudioSource>();
+        se_get.clip = sp_get;
+        se_get.loop = false;
+        se_get.Play();
+    }
+
+
+    //재료얻음
+    public void helpSound()
+    {
+        se_help = gameObject.GetComponent<AudioSource>();
+        se_help.clip = sp_help;
+        se_help.loop = false;
+        se_help.Play();
     }
     //포션놓기
     public void PutSound()

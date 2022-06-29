@@ -1927,7 +1927,7 @@ RectTransform:
   - {fileID: 651431326}
   - {fileID: 1765268887}
   m_Father: {fileID: 2080157828}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6789,7 +6789,7 @@ RectTransform:
   m_Children:
   - {fileID: 653419615}
   m_Father: {fileID: 2080157828}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7337,6 +7337,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 725323385}
         m_MethodName: SetHelp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1333930716}
+        m_MethodName: helpSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14929,50 +14940,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fd70ab2a574b54484e5983e98f0306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  se_book: {fileID: 0}
-  se_window: {fileID: 0}
-  se_cat: {fileID: 0}
-  se_cook: {fileID: 0}
-  se_food: {fileID: 0}
-  se_light: {fileID: 0}
   se_button: {fileID: 0}
-  se_TV: {fileID: 0}
-  se_sticker: {fileID: 0}
-  se_bed: {fileID: 0}
-  se_star: {fileID: 0}
-  se_switch: {fileID: 0}
-  se_spider: {fileID: 0}
-  se_turn: {fileID: 0}
-  se_ball: {fileID: 0}
-  se_airplane: {fileID: 0}
-  se_water: {fileID: 0}
-  se_cancle: {fileID: 0}
-  se_box: {fileID: 0}
-  se_foods: {fileID: 0}
-  se_talk: {fileID: 0}
-  se_pencil: {fileID: 0}
-  sp_book: {fileID: 0}
-  sp_window: {fileID: 0}
-  sp_cat: {fileID: 0}
-  sp_cook: {fileID: 0}
-  sp_food: {fileID: 0}
-  sp_light: {fileID: 0}
-  sp_button: {fileID: 8300000, guid: 192fa2613106421439993e308265d60a, type: 3}
-  sp_TV: {fileID: 0}
-  sp_sticker: {fileID: 0}
-  sp_bed: {fileID: 0}
-  sp_star: {fileID: 0}
-  sp_switch: {fileID: 0}
-  sp_spider: {fileID: 0}
-  sp_turn: {fileID: 0}
-  sp_ball: {fileID: 0}
-  sp_airplane: {fileID: 0}
-  sp_water: {fileID: 0}
-  sp_cancle: {fileID: 0}
-  sp_box: {fileID: 0}
-  sp_foods: {fileID: 0}
-  sp_talk: {fileID: 0}
-  sp_pencil: {fileID: 0}
+  se_day: {fileID: 0}
+  se_get: {fileID: 0}
+  se_help: {fileID: 0}
+  sp_button: {fileID: 8300000, guid: f3833e3289027674892002c0f5ed7dc9, type: 3}
+  sp_day: {fileID: 8300000, guid: fc47ae51e9e77fd4ca90fd326e2beba5, type: 3}
+  sp_get: {fileID: 0}
+  sp_help: {fileID: 8300000, guid: 192fa2613106421439993e308265d60a, type: 3}
   BGM: {fileID: 794309697}
   BGS: {fileID: 0}
   se_put: {fileID: 0}
@@ -20514,7 +20489,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1333930716}
-        m_MethodName: buttonSound
+        m_MethodName: daySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21008,9 +20983,9 @@ RectTransform:
   - {fileID: 539849484}
   - {fileID: 965974799}
   - {fileID: 782700268}
+  - {fileID: 610195606}
   - {fileID: 149306049}
   - {fileID: 2111297804}
-  - {fileID: 610195606}
   - {fileID: 571443357}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -21050,7 +21025,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2080157828}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

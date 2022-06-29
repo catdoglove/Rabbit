@@ -18,6 +18,7 @@ public class subTextgame : MonoBehaviour
     public Sprite[] areaImgs, martialImgs, butterflyImgs;
     public Text btnTxt1, btnTxt2; //질문버튼 텍스트
     public Text resultTotal; //질문버튼 텍스트
+    public GameObject GMe;
 
 
 
@@ -119,6 +120,7 @@ public class subTextgame : MonoBehaviour
             martialimg.SetActive(true);
             martialCount++;
             PlayerPrefs.SetInt("martialCount", martialCount);
+            GMe.GetComponent<SoundEvt>().getSound();
         }
 
         if (text_cut[3] == "6")
@@ -142,6 +144,7 @@ public class subTextgame : MonoBehaviour
             martialimg.SetActive(true);
             martialCount++;
             PlayerPrefs.SetInt("martialCount", martialCount);
+            GMe.GetComponent<SoundEvt>().getSound();
         }
 
         if (text_cut[5] == "5")
@@ -179,10 +182,11 @@ public class subTextgame : MonoBehaviour
         {
             if (text_str.Contains("재료"))
             {
-                Debug.Log("ㅅㅅㅅ");
                 martialimg.SetActive(true);
                 martialCount++;
                 PlayerPrefs.SetInt("martialCount", martialCount);
+
+                GMe.GetComponent<SoundEvt>().getSound();
             }
         }
 
@@ -221,6 +225,7 @@ public class subTextgame : MonoBehaviour
             {
                 butterflyImg.SetActive(true);
                 PlayerPrefs.SetInt("getButterfly", 999);
+                GMe.GetComponent<SoundEvt>().getSound();
             }
             else
             {
@@ -239,6 +244,7 @@ public class subTextgame : MonoBehaviour
         {
             resultButterfly.SetActive(true);
         }
+        GMe.GetComponent<SoundEvt>().daySound();
     }
     public void returnHome()
     {
