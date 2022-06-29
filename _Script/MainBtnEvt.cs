@@ -190,12 +190,11 @@ public class MainBtnEvt : MonoBehaviour
     public void GoOut()
     {
         //테스트
-        PlayerPrefs.SetInt("hearti", 2);
         if (PlayerPrefs.GetInt("hearti", 3) > 0)
         {
             StartCoroutine("LoadSub");
             PlayerPrefs.SetInt("whereisit", check_i);
-            PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
+            //PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
         }
         else
         {

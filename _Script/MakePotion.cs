@@ -114,8 +114,6 @@ public class MakePotion : MonoBehaviour
 
     public void OnMouseUp()
     {
-        audio_obj = GameObject.Find("soundSE");
-        audio_obj.GetComponent<SoundEvt>().PutSound();
         if (wldObjectPos.x > -1 && wldObjectPos.x < 1.1)
         {
             if (wldObjectPos.y < 0.4 && wldObjectPos.y > -3)
@@ -125,6 +123,8 @@ public class MakePotion : MonoBehaviour
                     PlayerPrefs.SetInt("butterin" + num_str, 1);
                     GM.GetComponent<PotionEvt>().SetButterin();
                     PlayerPrefs.SetInt("checkingput", 1);
+                    audio_obj = GameObject.Find("soundSE");
+                    audio_obj.GetComponent<SoundEvt>().PutSound();
                 }
                 else if (PlayerPrefs.GetInt("ingn" + num_str, 0) > 0)
                 {
@@ -134,6 +134,8 @@ public class MakePotion : MonoBehaviour
                         GM.GetComponent<PotionEvt>().SetIng();
                         GM.GetComponent<PotionEvt>().SetIngColor(int.Parse(num_str) - 1);
                         PlayerPrefs.SetInt("checkingput", 1);
+                        audio_obj = GameObject.Find("soundSE");
+                        audio_obj.GetComponent<SoundEvt>().PutSound();
                     }
                 }
             }

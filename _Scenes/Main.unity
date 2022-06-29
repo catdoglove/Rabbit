@@ -7465,8 +7465,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: 11.9}
-  m_SizeDelta: {x: 460.92963, y: 259.94885}
+  m_AnchoredPosition: {x: 160, y: 7.6}
+  m_SizeDelta: {x: 460.92963, y: 268.6137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675927217
 MonoBehaviour:
@@ -8048,7 +8048,7 @@ MonoBehaviour:
   potionColorIng2_spr:
   - {fileID: 208691861467950641, guid: 3d794d2a61cdfd8439751973db52ec8d, type: 3}
   - {fileID: 9025921251288816771, guid: 2093ebdaa28b0d240aa93eeeea3fdf94, type: 3}
-  - {fileID: -839137302856352532, guid: 2093ebdaa28b0d240aa93eeeea3fdf94, type: 3}
+  - {fileID: -2536825331014046139, guid: 2093ebdaa28b0d240aa93eeeea3fdf94, type: 3}
   - {fileID: 5470409014656673959, guid: 3d794d2a61cdfd8439751973db52ec8d, type: 3}
   color: {r: 0, g: 0, b: 0, a: 0}
   butterfly_obj:
