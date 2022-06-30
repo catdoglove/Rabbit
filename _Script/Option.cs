@@ -43,4 +43,9 @@ public class Option : MonoBehaviour
         }
 
     }
+
+    public void showLink()
+    {
+        Application.OpenURL("https://forms.gle/7sHFXnCpbCDptaVD7");
+    }
 }
