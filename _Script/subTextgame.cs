@@ -20,7 +20,7 @@ public class subTextgame : MonoBehaviour
     public Text resultTotal; //질문버튼 텍스트
     public GameObject GMe;
 
-
+    public GameObject adBtn_obj, adsToast_obj;
 
     // Start is called before the first frame update
     void Start()
@@ -245,8 +245,10 @@ public class subTextgame : MonoBehaviour
             resultButterfly.SetActive(true);
         }
         GMe.GetComponent<SoundEvt>().daySound();
+        SetData();
     }
-    public void returnHome()
+
+    public void SetData()
     {
         //장소 코드 0:숲, 1:물, 2:동굴, 3:용암
         //빨초파노
@@ -268,18 +270,30 @@ public class subTextgame : MonoBehaviour
             default:
                 break;
         }
-
-        PlayerPrefs.SetInt("ing" + c, PlayerPrefs.GetInt("ing" + c, 0)+PlayerPrefs.GetInt("martialCount", 0));
+        PlayerPrefs.SetInt("ing" + c, PlayerPrefs.GetInt("ing" + c, 0) + PlayerPrefs.GetInt("martialCount", 0));
         if (PlayerPrefs.GetInt("getButterfly", 0) == 999)
         {
             PlayerPrefs.SetInt("Butterfly" + c, 1);
         }
+    }
+    public void returnHome()
+    {
         StartCoroutine("LoadMain");
         PlayerPrefs.SetInt("whereisit", 5);
     }
     public void doubleReward()
     {
-        Debug.Log("보상두배");
+        resultTotal.text = PlayerPrefs.GetInt("martialCount", 0).ToString();
+        adBtn_obj.GetComponent<Button>().interactable = false;
+    }
+    
+    public void AdToast()
+    {
+        adsToast_obj.SetActive(true);
+    }
+    public void AdToastClose()
+    {
+        adsToast_obj.SetActive(false);
     }
 
 

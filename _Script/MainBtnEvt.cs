@@ -13,7 +13,7 @@ public class MainBtnEvt : MonoBehaviour
     public int check_i;
     public GameObject GM;
 
-    public GameObject toast_obj, toast2_obj;
+    public GameObject toast_obj, toast2_obj, ads_obj, adsToast_obj;
     public GameObject gameClose_obj;
     float y;
 
@@ -194,12 +194,26 @@ public class MainBtnEvt : MonoBehaviour
         {
             StartCoroutine("LoadSub");
             PlayerPrefs.SetInt("whereisit", check_i);
-            //PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
+            PlayerPrefs.SetInt("hearti", PlayerPrefs.GetInt("hearti", 3) - 1);
         }
         else
         {
-            toast2_obj.SetActive(true);
+            ads_obj.SetActive(true);
         }
+    }
+
+    public void CloseAds()
+    {
+        ads_obj.SetActive(false);
+    }
+
+    public void AdToast()
+    {
+        adsToast_obj.SetActive(true);
+    }
+    public void AdToastClose()
+    {
+        adsToast_obj.SetActive(false);
     }
 
     IEnumerator LoadSub()

@@ -50,13 +50,13 @@ public class MainTime : MonoBehaviour
             sec = (int)compareTime.TotalSeconds;
             sec = sec - (sec / 60) * 60;
             sec = 59 - sec;
-            minute = 4 - minute;
+            minute = 9 - minute;
 
             if (minute < 0)
             {
                 while (minute < 0)
                 {
-                    minute = minute + 5;
+                    minute = minute + 10;
                     if (heart_i >= 3)
                     {
                     }
