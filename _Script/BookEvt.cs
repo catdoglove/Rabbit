@@ -14,6 +14,8 @@ public class BookEvt : MonoBehaviour
     public Text[] potion_txt, potionName_txt;
     public string[] potion_str, potionName_str;
     public GameObject[] q_obj, h_obj;
+
+    public Text page_txt;
     // Start is called before the first frame update
     void Start()
     {
@@ -129,6 +131,7 @@ public class BookEvt : MonoBehaviour
             default:
                 break;
         }
+        page_txt.text = page_i+1+"/5";
     }
     public void BackPage()
     {
@@ -164,11 +167,21 @@ public class BookEvt : MonoBehaviour
             default:
                 break;
         }
+        page_txt.text = page_i + 1 + "/5";
     }
 
 
-    public void ShowHint()
+    public void SetPageNum()
     {
-
+        page_i = 0;
+        page_txt.text = "1/5";
+        Lbtn_obj.SetActive(false);
+        Rbtn_obj.SetActive(true);
+        page1_obj.SetActive(true);
+        page2_obj.SetActive(false);
+        page3_obj.SetActive(false);
+        page4_obj.SetActive(false);
+        page5_obj.SetActive(false);
     }
+    
 }

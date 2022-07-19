@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.UI;
 
 public class ShowAdmob : MonoBehaviour
 {
@@ -14,6 +15,22 @@ public class ShowAdmob : MonoBehaviour
 
 
     public GameObject GM;
+
+
+
+    Color color;
+
+    Vector2 pos;
+    public Vector2 wldObjectPos;
+
+    public GameObject fade_obj;
+
+    public float moveY, moveX;
+
+    Vector2 mouseDragPos;
+
+    public Sprite[] rain_spr;
+
 
     // Start is called before the first frame update
     private BannerView bannerView;
@@ -42,6 +59,7 @@ public class ShowAdmob : MonoBehaviour
 
         this.RequestBanner();
 
+        color = fade_obj.GetComponent<Text>().color;
     }
 
     private void OnDisable()
@@ -64,11 +82,11 @@ public class ShowAdmob : MonoBehaviour
     public void HandleUserEarnedReward(object sender, Reward args)
     {
         GM.GetComponent<subTextgame>().SetData();
+        getRainFade();
         PlayerPrefs.SetInt("martialCount",  PlayerPrefs.GetInt("martialCount", 0) + PlayerPrefs.GetInt("martialCount", 0));
         GM.GetComponent<subTextgame>().doubleReward();
         PlayerPrefs.Save();
         //PlayerPrefs.SetInt("blad", 1);
-
     }
 
     //동영상닫음
@@ -130,5 +148,41 @@ public class ShowAdmob : MonoBehaviour
         {
             bannerView.Destroy();
         }
+    }
+
+
+
+
+
+
+    public void getRainFade()
+    {
+        //mouseDragPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        //wldObjectPos = Camera.main.ScreenToWorldPoint(mouseDragPos);
+
+        fade_obj.SetActive(true);
+        moveY = fade_obj.transform.position.y;
+        moveX = fade_obj.transform.position.x;
+        //fade_obj.transform.position = wldObjectPos;
+        //color.a = Mathf.Lerp(0f, 1f, 1f);
+        //fade_obj.GetComponent<Text>().color = color;
+        StartCoroutine("imgFadeOut");
+        fade_obj.GetComponent<Text>().text = "+" + PlayerPrefs.GetInt("martialCount", 0);
+    }
+
+    IEnumerator imgFadeOut()
+    {
+
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            fade_obj.GetComponent<Text>().color = color;
+            moveY = moveY + 0.02f;
+            fade_obj.transform.position = new Vector2(moveX, moveY);
+            yield return new WaitForSeconds(0.02f);
+        }
+
+        //fade_obj.transform.position = new Vector2(15f, 15f);
     }
 }

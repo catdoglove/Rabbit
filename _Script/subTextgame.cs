@@ -22,6 +22,10 @@ public class subTextgame : MonoBehaviour
 
     public GameObject adBtn_obj, adsToast_obj;
 
+
+    public GameObject[] ingUpside_obj;
+    public int ing_i;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +37,7 @@ public class subTextgame : MonoBehaviour
 
         nextNum = 0;
         randomNum();
-
+        ing_i = 0;
     }
 
     void randomNum()
@@ -61,6 +65,10 @@ public class subTextgame : MonoBehaviour
 
     void areaImgSet()
     {
+        for (int i = 0; i < 12; i++)
+        {
+            ingUpside_obj[i].GetComponent<Image>().sprite = martialImgs[areaCode];
+        }
         areaImg.GetComponent<Image>().sprite = areaImgs[areaCode];
         martialimg.GetComponent<Image>().sprite = martialImgs[areaCode];
         butterflyImg.GetComponent<Image>().sprite = butterflyImgs[areaCode];
@@ -119,6 +127,8 @@ public class subTextgame : MonoBehaviour
             Debug.Log("4얻");
             martialimg.SetActive(true);
             martialCount++;
+            ing_i++;
+            SetIngShow();
             PlayerPrefs.SetInt("martialCount", martialCount);
             GMe.GetComponent<SoundEvt>().getSound();
         }
@@ -143,6 +153,8 @@ public class subTextgame : MonoBehaviour
             Debug.Log("6얻");
             martialimg.SetActive(true);
             martialCount++;
+            ing_i++;
+            SetIngShow();
             PlayerPrefs.SetInt("martialCount", martialCount);
             GMe.GetComponent<SoundEvt>().getSound();
         }
@@ -184,6 +196,8 @@ public class subTextgame : MonoBehaviour
             {
                 martialimg.SetActive(true);
                 martialCount++;
+                ing_i++;
+                SetIngShow();
                 PlayerPrefs.SetInt("martialCount", martialCount);
 
                 GMe.GetComponent<SoundEvt>().getSound();
@@ -276,11 +290,13 @@ public class subTextgame : MonoBehaviour
             PlayerPrefs.SetInt("Butterfly" + c, 1);
         }
     }
+
     public void returnHome()
     {
         StartCoroutine("LoadMain");
         PlayerPrefs.SetInt("whereisit", 5);
     }
+
     public void doubleReward()
     {
         resultTotal.text = PlayerPrefs.GetInt("martialCount", 0).ToString();
@@ -291,12 +307,20 @@ public class subTextgame : MonoBehaviour
     {
         adsToast_obj.SetActive(true);
     }
+
     public void AdToastClose()
     {
         adsToast_obj.SetActive(false);
     }
-
-
+    
+    void SetIngShow()
+    {
+        for (int i = 0; i < ing_i; i++)
+        {
+            ingUpside_obj[i].SetActive(true);
+        }
+    }
+    
     IEnumerator LoadMain()
     {
         async = SceneManager.LoadSceneAsync("SubLoad");

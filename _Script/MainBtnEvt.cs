@@ -99,6 +99,7 @@ public class MainBtnEvt : MonoBehaviour
     {
         GM.GetComponent<BookEvt>().setData();
         book_obj.SetActive(true);
+        GM.GetComponent<BookEvt>().SetPageNum();
     }
 
     public void CloseBook()
