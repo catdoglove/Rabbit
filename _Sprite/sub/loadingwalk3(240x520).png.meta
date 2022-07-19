@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 12baa07534ce5a448bb5c15b54af1f58
+guid: d17c1c7c1d05ebe4e9d1a0695b0a4511
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8277283970316995876
-    second: loadingwalk(128x512)_0
+      213: -5510057461636603357
+    second: loadingwalk3(240x520)_0
   - first:
-      213: 7840068759009662168
-    second: loadingwalk(128x512)_1
+      213: -1352016004192352754
+    second: loadingwalk3(240x520)_1
   - first:
-      213: 637218171293406584
-    second: loadingwalk(128x512)_2
+      213: 5051219960313822545
+    second: loadingwalk3(240x520)_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,19 +96,19 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 47
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: loadingwalk(128x512)_0
+      name: loadingwalk3(240x520)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -122,14 +122,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42d87c38ae1ded270800000000000000
-      internalID: 8277283970316995876
+      spriteID: 322e823aee75883b0800000000000000
+      internalID: -5510057461636603357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: loadingwalk(128x512)_1
+      name: loadingwalk3(240x520)_1
       rect:
         serializedVersion: 2
         x: 480
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d498637ff48dcc60800000000000000
-      internalID: 7840068759009662168
+      spriteID: e06c8738b9cac3de0800000000000000
+      internalID: -1352016004192352754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: loadingwalk(128x512)_2
+      name: loadingwalk3(240x520)_2
       rect:
         serializedVersion: 2
         x: 960
@@ -164,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8751e58fc8ad7d800800000000000000
-      internalID: 637218171293406584
+      spriteID: 15d3ed89ac9891640800000000000000
+      internalID: 5051219960313822545
       vertices: []
       indices: 
       edges: []

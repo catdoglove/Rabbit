@@ -156,6 +156,7 @@ public class MainBtnEvt : MonoBehaviour
         check_i = 0;
         CheckOff();
         check_obj[0].SetActive(true);
+        PlayerPrefs.SetInt("whereisitck", 0);
     }
     //용암
     public void OutCheck2()
@@ -163,6 +164,7 @@ public class MainBtnEvt : MonoBehaviour
         check_i = 3;
         CheckOff();
         check_obj[1].SetActive(true);
+        PlayerPrefs.SetInt("whereisitck", 3);
     }
     //동굴
     public void OutCheck3()
@@ -170,6 +172,7 @@ public class MainBtnEvt : MonoBehaviour
         check_i = 2;
         CheckOff();
         check_obj[2].SetActive(true);
+        PlayerPrefs.SetInt("whereisitck", 2);
     }
     //폭포
     public void OutCheck4()
@@ -177,6 +180,7 @@ public class MainBtnEvt : MonoBehaviour
         check_i = 1;
         CheckOff();
         check_obj[3].SetActive(true);
+        PlayerPrefs.SetInt("whereisitck", 1);
     }
 
     void CheckOff()
