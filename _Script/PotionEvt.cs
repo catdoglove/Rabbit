@@ -444,11 +444,11 @@ public class PotionEvt : MonoBehaviour
             ir_i = Random.Range(0, 2);
             if (ir_i == 0)
             {
-                endFail_txt.text = "포션이 만들어지지 않았다..."+"\n\n"  + "힌트" +"\n" + "한 가지 재료를 많이 넣어본다면?";
+                endFail_txt.text = "힌트" +"\n" + "한 가지 재료를 많이 넣어본다면?";
             }
             else
             {
-                endFail_txt.text = "포션이 만들어지지 않았다..." + "\n\n" + "힌트" + "\n" + "두 가지 재료를 적절하게 넣는다면 ? ";
+                endFail_txt.text = "힌트" + "\n" + "두 가지 재료를 적절하게 넣는다면 ? ";
             }
         }
         else
