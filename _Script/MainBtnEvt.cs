@@ -115,6 +115,11 @@ public class MainBtnEvt : MonoBehaviour
         else
         {
             goOut_obj.SetActive(true);
+
+            check_i = 0;
+            CheckOff();
+            check_obj[0].SetActive(true);
+            PlayerPrefs.SetInt("whereisitck", 0);
         }
     }
 

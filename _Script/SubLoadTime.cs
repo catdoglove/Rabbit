@@ -19,23 +19,7 @@ public class SubLoadTime : MonoBehaviour
             StartCoroutine("updateSec");
         }
 
-        Debug.Log(PlayerPrefs.GetInt("whereisitck", 0));
     }
-
-
-    /*
-     
-                    else if (PlayerPrefs.GetInt("whereisit", 0) == 5)
-                    {
-                        rabbitback_obj.SetActive(true);
-                        rabbit_obj.SetActive(false);
-                        rabbit_obj.GetComponent<Image>().sprite = rabbit_spr[0];
-                    }
-     */
-
-
-
-
 
 
     IEnumerator updateSec2()
