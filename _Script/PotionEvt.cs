@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class PotionEvt : MonoBehaviour
 {
     public Text ing1_txt, ing2_txt, ing3_txt, ing4_txt;
-    public GameObject DayEnd_obj, DayEnding_obj;
+    public GameObject DayEnd_obj, DayEnding_obj, DayEndingFail_obj;
     public GameObject endingBtnR_obj, endingBtnL_obj;
     public Text day_txt;
     public int pageNum_i;
     public GameObject page1_obj, page2_obj;
     public GameObject GM, GMS;
-    public GameObject end1_obj, end2_obj;
-    public Sprite[] potion_spr, potionEnd1_spr, potionEnd2_spr;
-    public Text end_txt, end2_txt;
+    public GameObject end1_obj, end2_obj, endFail_obj;
+    public Sprite[] potion_spr, potionEnd1_spr, potionEnd2_spr, potionEndFail_spr;
+    public Text end_txt, end2_txt, endFail_txt;
 
     public GameObject potionColor_obj, potionColorIng_obj;
     public Sprite[] potionColorIng_spr, potionColorIng2_spr;
@@ -287,7 +287,8 @@ public class PotionEvt : MonoBehaviour
             num = 0 + num2;
             num2 = 0 + b;
         }
-        if (i2<4|| i2 < 4)
+
+        if (i1 < 7 || i2 < 7)
         {
             num2 = 0;
         }
@@ -309,19 +310,20 @@ public class PotionEvt : MonoBehaviour
         {
             endhelp_i++;
         }
-        if (PlayerPrefs.GetInt("useding1", 0) > 1)
+        int ik_i = 2;
+        if (PlayerPrefs.GetInt("useding1", 0) > ik_i)
         {
             endhelp_i++;
         }
-        if (PlayerPrefs.GetInt("useding2", 0) > 1)
+        if (PlayerPrefs.GetInt("useding2", 0) > ik_i)
         {
             endhelp_i++;
         }
-        if (PlayerPrefs.GetInt("useding3", 0) > 1)
+        if (PlayerPrefs.GetInt("useding3", 0) > ik_i)
         {
             endhelp_i++;
         }
-        if (PlayerPrefs.GetInt("useding4", 0) > 1)
+        if (PlayerPrefs.GetInt("useding4", 0) > ik_i)
         {
             endhelp_i++;
         }
@@ -387,9 +389,15 @@ public class PotionEvt : MonoBehaviour
             }
             else
             {
+
+                if (i1 < 8 )
+                {
+                    numsave = 0;
+                }
                 switch (numsave)
                 {
                     case 0:
+
                         break;
                     case 1:
                         end1_obj.GetComponent<Image>().sprite = potion_spr[1];
@@ -428,12 +436,29 @@ public class PotionEvt : MonoBehaviour
                 }
             }
         }
+        if (numsave==0)
+        {
+            DayEndingFail_obj.SetActive(true);
 
-        DayEnding_obj.SetActive(true);
-        endingBtnL_obj.SetActive(false);
-        page1_obj.SetActive(true);
-        page2_obj.SetActive(false);
-        pageNum_i = 0;
+            int ir_i = 0;
+            ir_i = Random.Range(0, 2);
+            if (ir_i == 0)
+            {
+                endFail_txt.text = "포션이 만들어지지 않았다..."+"\n\n"  + "힌트" +"\n" + "한 가지 재료를 많이 넣어본다면?";
+            }
+            else
+            {
+                endFail_txt.text = "포션이 만들어지지 않았다..." + "\n\n" + "힌트" + "\n" + "두 가지 재료를 적절하게 넣는다면 ? ";
+            }
+        }
+        else
+        {
+            DayEnding_obj.SetActive(true);
+            endingBtnL_obj.SetActive(false);
+            page1_obj.SetActive(true);
+            page2_obj.SetActive(false);
+            pageNum_i = 0;
+        }
 
         GMS.GetComponent<SoundEvt>().SetEnd();
 
@@ -457,6 +482,14 @@ public class PotionEvt : MonoBehaviour
         potionColor_obj.GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f);
         potionColorIng_obj.SetActive(false);
         PlayerPrefs.Save();
+    }
+
+    public void CloseEndFail()
+    {
+        DayEndingFail_obj.SetActive(false);
+        GM.GetComponent<MainBtnEvt>().OpenTitle();
+        StopCoroutine("updateSec");
+        GMS.GetComponent<SoundEvt>().SetOri();
     }
 
     public void SetButter()
@@ -592,18 +625,22 @@ public class PotionEvt : MonoBehaviour
             {
                 case 0:
                     end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[end_i];
+                    endFail_obj.GetComponent<Image>().sprite = potionEndFail_spr[0];
                     k++;
                     break;
                 case 1:
                     end2_obj.GetComponent<Image>().sprite = potionEnd2_spr[end_i];
+                    endFail_obj.GetComponent<Image>().sprite = potionEndFail_spr[1];
                     k++;
                     break;
                 case 2:
                     end2_obj.GetComponent<Image>().sprite = potionEnd1_spr[end_i];
+                    endFail_obj.GetComponent<Image>().sprite = potionEndFail_spr[0];
                     k++;
                     break;
                 case 3:
                     end2_obj.GetComponent<Image>().sprite = potionEnd2_spr[end_i];
+                    endFail_obj.GetComponent<Image>().sprite = potionEndFail_spr[1];
                     k = 0;
                     break;
                 default:

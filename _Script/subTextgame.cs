@@ -24,7 +24,7 @@ public class subTextgame : MonoBehaviour
 
 
     public GameObject[] ingUpside_obj;
-    public int ing_i;
+    public int ing_i, ingRand_i;
 
     // Start is called before the first frame update
     void Start()
@@ -126,8 +126,7 @@ public class subTextgame : MonoBehaviour
         {
             Debug.Log("4얻");
             martialimg.SetActive(true);
-            martialCount++;
-            ing_i++;
+            AddNum();
             SetIngShow();
             PlayerPrefs.SetInt("martialCount", martialCount);
             GMe.GetComponent<SoundEvt>().getSound();
@@ -152,8 +151,7 @@ public class subTextgame : MonoBehaviour
         {
             Debug.Log("6얻");
             martialimg.SetActive(true);
-            martialCount++;
-            ing_i++;
+            AddNum();
             SetIngShow();
             PlayerPrefs.SetInt("martialCount", martialCount);
             GMe.GetComponent<SoundEvt>().getSound();
@@ -195,8 +193,7 @@ public class subTextgame : MonoBehaviour
             if (text_str.Contains("재료"))
             {
                 martialimg.SetActive(true);
-                martialCount++;
-                ing_i++;
+                AddNum();
                 SetIngShow();
                 PlayerPrefs.SetInt("martialCount", martialCount);
 
@@ -318,6 +315,21 @@ public class subTextgame : MonoBehaviour
         for (int i = 0; i < ing_i; i++)
         {
             ingUpside_obj[i].SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// 재료 얻는 수 랜덤하게 증가
+    /// </summary>
+    void AddNum()
+    {
+        martialCount++;
+        ing_i++;
+        ingRand_i = Random.Range(0, 2);
+        if (ingRand_i == 0)
+        {
+            martialCount++;
+            ing_i++;
         }
     }
     
